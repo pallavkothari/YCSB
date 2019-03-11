@@ -75,3 +75,16 @@ To build the full distribution, with all database bindings:
 To build a single database binding:
 
     mvn -pl com.yahoo.ycsb:mongodb-binding -am clean package
+
+
+Building a docker image from a couple bindings 
+==============================================
+
+```bash 
+mvn -pl com.yahoo.ycsb:redis-binding -am clean package
+mvn -pl com.yahoo.ycsb:cassandra-binding -am clean package
+docker build . -t ycsb
+docker run --name ycsb --rm -it ycsb bash
+```
+_note: if you build different bindings, update the Dockerfile_
+

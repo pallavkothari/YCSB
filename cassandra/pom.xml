@@ -39,9 +39,9 @@ LICENSE file.
   <dependencies>
     <!-- CQL driver -->
     <dependency>
-      <groupId>com.datastax.cassandra</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>cassandra-driver-core</artifactId>
-      <version>${cassandra.cql.version}</version>
+      <version>3.2.0-yb-19</version>
     </dependency>
     <dependency>
       <groupId>com.yahoo.ycsb</groupId>

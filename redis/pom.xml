@@ -31,9 +31,9 @@ LICENSE file.
 
   <dependencies>
     <dependency>
-      <groupId>redis.clients</groupId>
+      <groupId>com.yugabyte</groupId>
       <artifactId>jedis</artifactId>
-      <version>${redis.version}</version>
+      <version>2.9.0-yb-16</version>
     </dependency>
     <dependency>
       <groupId>com.yahoo.ycsb</groupId>
