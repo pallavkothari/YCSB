@@ -80,11 +80,25 @@ To build a single database binding:
 Building a docker image from a couple bindings 
 ==============================================
 
+Run redis from a different terminal, so that you can test it from the YCSB container below
+```bash
+docker run --name redis --rm -it -p 6379:6379 redis:alpine 
+```
+
+In another terminal:
 ```bash 
 mvn -pl com.yahoo.ycsb:redis-binding -am clean package
 mvn -pl com.yahoo.ycsb:cassandra-binding -am clean package
 docker build . -t ycsb
-docker run --name ycsb --rm -it ycsb bash
+docker run --name ycsb --network="host" --rm -it ycsb bash
+
+## now to test redis for example: 
+./bin/ycsb.sh load redis -s -P workloads/workloada -p "redis.host=127.0.0.1" -p "redis.port=6379" -p "recordcount=10000" > outputLoad.txt
+cat outputLoad.txt
+
+./bin/ycsb.sh run redis -s -P workloads/workloada -p "redis.host=127.0.0.1" -p "redis.port=6379" -p "recordcount=10000" -p "operationcount=100000" > outputRun.txt
+cat outputRun.txt
+
 ```
 _note: if you build different bindings, update the Dockerfile_
 
